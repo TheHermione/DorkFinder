@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 # Script created by glavstroy
+# Thanks to @reewardius
 
 RED = "\33[91m"
 BLUE = "\33[94m"

@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 import argparse
 
 RED = "\33[91m"
@@ -11,7 +12,7 @@ END = "\033[0m"
 
 parser = argparse.ArgumentParser(description='Google DorkFinder')
 parser.add_argument('-t', '--target', metavar='example.com', help='enter the target domain', dest='target', type=str, required=True)
-parser.add_argument('-o', '--output', metavar='example.txt', help='print to output file', dest='output')
+parser.add_argument('-o', '--output', action='store_true',  help='print to output.txt', dest='output')
 parser.add_argument('-p', '--proxy', help='use proxy', dest='proxy')
 args = parser.parse_args()
 cli = args.target

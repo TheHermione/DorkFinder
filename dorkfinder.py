@@ -71,7 +71,6 @@ def main():
                 if url_list.args.output:
                     with open('output.txt', 'a', encoding='utf-8') as output_file:
                         output_file.write(f'[+] {url_found}\n')
-                        print(f'Output saved to file: output.txt')
             else:
                 print(f'{url}   {CYAN}======>{END}  {RED}Not found{END}')
 

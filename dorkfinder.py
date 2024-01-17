@@ -19,13 +19,14 @@ banner = f"""{CYAN}
 ██████╔╝╚██████╔╝██║  ██║██║  ██╗██║     ██║██║ ╚████║██████╔╝███████╗██║  ██║
 ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝{END}"""
 print(banner)
+print(f'\n')
 
 import requests
 from bs4 import BeautifulSoup
 import url_list
 import time
-#from proxies import proxy
 import random
+
 
 def main():
     for url in url_list.urls:
@@ -41,24 +42,26 @@ def main():
             "Sec-Fetch-Site": "cross-site",
             "TE": "trailers"
             }
-        r = requests.get(url, headers=headers, timeout=70)
-        if r.status_code == 200:
-            html = r.text
-            soup = BeautifulSoup(html, 'html.parser')
-            links = soup.find_all('h3')
-        elif r.status_code == 429:
-            print(f"{RED}You've got a captcha from Google. Try again later or use an another proxy{END}")
-            break
-        else:
-            print(f'{RED}Unknown error{END}')
-            break
+        if url_list.cli:
+            r = requests.get(url, headers=headers, timeout=70)
+            if r.status_code == 200:
+                html = r.text
+                soup = BeautifulSoup(html, 'html.parser')
+                links = soup.find_all('h3')
+            elif r.status_code == 429:
+                print(f"{RED}You've got a captcha from Google. Try again later or use an another proxy{END}")
+                break
+            else:
+                print(f'{RED}Unknown error{END}')
+                break
 
-        if len(links) >= 1:
-            print(f'{url}   {CYAN}======>{END}  {GREEN}Found{END}')
-        else:
-            print(f'{url}   {CYAN}======>{END}  {RED}Not found{END}')
+            if len(links) >= 1:
+                print(f'{url}   {CYAN}======>{END}  {GREEN}Found{END}')
+            else:
+                print(f'{url}   {CYAN}======>{END}  {RED}Not found{END}')
 
-        time.sleep(random.randint(58,66))
+            time.sleep(random.randint(58,66))
+
 try:
     main()
 except KeyboardInterrupt:

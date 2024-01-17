@@ -75,7 +75,7 @@ def main():
             else:
                 print(f'{url}   {CYAN}======>{END}  {RED}Not found{END}')
 
-            time.sleep(random.randint(0,1))
+            time.sleep(random.randint(58,66))
 
 try:
     main()

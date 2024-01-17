@@ -26,9 +26,15 @@ from bs4 import BeautifulSoup
 import url_list
 import time
 import random
-
+import os
 
 def main():
+
+    #clean output file
+    file_path = 'output.txt'
+    if os.path.exists(file_path):
+        os.remove("output.txt")
+
     for url in url_list.urls:
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0",
@@ -42,6 +48,8 @@ def main():
             "Sec-Fetch-Site": "cross-site",
             "TE": "trailers"
             }
+        
+        #check if the -t flag is specified before sending requests and analyzing them
         if url_list.cli:
             r = requests.get(url, headers=headers, timeout=70)
             if r.status_code == 200:
@@ -56,11 +64,18 @@ def main():
                 break
 
             if len(links) >= 1:
-                print(f'{url}   {CYAN}======>{END}  {GREEN}Found{END}')
+                url_found = url
+                print(f'{url_found}   {CYAN}======>{END}  {GREEN}Found{END}')
+
+                #print all dorks to an output file
+                if url_list.args.output:
+                    with open('output.txt', 'a', encoding='utf-8') as output_file:
+                        output_file.write(f'[+] {url_found}\n')
+                        print(f'Output saved to file: output.txt')
             else:
                 print(f'{url}   {CYAN}======>{END}  {RED}Not found{END}')
 
-            time.sleep(random.randint(58,66))
+            time.sleep(random.randint(0,1))
 
 try:
     main()

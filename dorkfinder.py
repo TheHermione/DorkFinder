@@ -66,14 +66,14 @@ def main():
 
             if len(links) >= 1:
                 url_found = url
-                print(f'{url_found}   {CYAN}======>{END}  {GREEN}Found{END}')
+                print(f'{BLUE}[!]{END} {url_found}   {CYAN}======>{END}  {GREEN}Found{END}')
 
-                #print all dorks to an output file
+                #print all dorks to output.txt file
                 if url_list.args.output:
                     with open('output.txt', 'a', encoding='utf-8') as output_file:
                         output_file.write(f'[+] {url_found}\n')
             else:
-                print(f'{url}   {CYAN}======>{END}  {RED}Not found{END}')
+                print(f'{BLUE}[!]{END} {url}   {CYAN}======>{END}  {RED}Not found{END}')
 
             time.sleep(random.randint(58,66))
 

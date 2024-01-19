@@ -2,14 +2,6 @@
 
 import argparse
 
-RED = "\33[91m"
-BLUE = "\33[94m"
-PURPLE = "\033[32m"
-YELLOW = "\033[93m"
-PURPLE = '\033[0;35m' 
-CYAN = "\033[36m"
-END = "\033[0m"
-
 parser = argparse.ArgumentParser(description='Google DorkFinder by glavstroy')
 parser.add_argument('-t', metavar='example.com', help='enter the target domain', dest='target', type=str, required=True)
 parser.add_argument('-o', action='store_true',  help='print to output.txt', dest='output')
@@ -17,12 +9,19 @@ parser.add_argument('-o', action='store_true',  help='print to output.txt', dest
 args = parser.parse_args()
 cli = args.target
 urls = [
+    #Broad domain search with negative search
     f'site:{cli} -www -shop -share -ir -mfa',
+    #SQL Injection Errors
     f'site:{cli} intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"',
+    #PHP extension with parameters
     f'site:{cli} ext:php inurl:?',
+    #Java extension with parameters
     f'site:{cli} ext:jsp OR ext:do OR ext:action inurl:?',
+    #NET extension with parameters
     f'site:{cli} ext:aspx OR ext:asa OR ext:asp OR ext:asax inurl:?',
+    #Disclosed XSS and Open Redirects
     f'site:openbugbounty.org inurl:reports intext:"{cli}"',
+    #Juicy Extensions
     f'site:"{cli}" ext:log | ext:txt | ext:conf | ext:cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git | ext:svn | ext:htpasswd | ext:htaccess | ext:sql | ext:csv | ext:.git-credentials | ext:yaml | ext:yml | ext:ppk | ext:pem | ext:json | ext:cfg | ext:xml | ext:ps1',
     f'site:"{cli}" filename:connections.xml | filename:config.php | filename:config.json',
     f'site:"{cli}" ext:jsp | ext:asp | ext:php | ext:aspx | ext:pl | ext:cfm | ext:py | ext:rb',
@@ -157,12 +156,14 @@ urls = [
     f'allintitle:restricted filetype:doc site:{cli}',
     f'inurl:Dashboard.jspa intext:"Atlassian Jira Project Management Software" site:{cli}',
     f'filetype:txt site:{cli}',
+    #App frameworks and their exposures
     f'site:{cli} "Whoops! There was an error."',
     f'site:{cli} inurl:/frontend_dev.php/$',
     f'site:{cli} "SF_ROOT_DIR"',
     f'site:{cli} Application Trace + nil:NilClass (10%) TBD',
     f'site:{cli} "unexpected error" OR "Uncaught Exception" OR "fatal error" OR "Unknown column" OR "exception occurred"',
     f'site:{cli} employee offers',
+    #Code Leaks
     f'inurl:gitlab "{cli}"',
     f'site:http://box.com "{cli}"',
     f'inurl:gitlab "{cli}"',
@@ -192,6 +193,7 @@ urls = [
     f'site:ycombinator.com "{cli}"',
     f'site:zoom.us inurl:"{cli}"',
     f'inurl:https://trello.com AND intext:{cli}',
+    #Cloud Storage
     f'site:s3.amazonaws.com "{cli}"',
     f'site:blob.core.windows.net "{cli}"',
     f'site:googleapis.com "{cli}"',
@@ -206,18 +208,26 @@ urls = [
     f'inurl:www.dropbox.com/s/ "{cli}"',
     f'site:box.com/s "{cli}"',
     f'site:docs.google.com inurl:"/d/" "{cli}"',
+    #XSS prone parameters
     f'inurl:lang= | inurl:name= | inurl:view= | inurl:name= | inurl:callback= | inurl:id= | inurl:q= | inurl:s= | inurl:keyword= | inurl:search= | inurl:page= | inurl:query= inurl:& site:{cli}',
+    #Open Redirect prone parameters
     f'inurl:page= | inurl:next= | inurl:host= | inurl:go= | inurl:goto= | inurl:file= | inurl:host= | inurl:redirect_to= | inurl:url= | inurl:redirect | inurl:src=http | inurl:r=http | inurl:return= | inurl:next= | inurl:redir= | inurl:http site:*.*.{cli}',
     f'inurl:page= | inurl:next= | inurl:host= | inurl:go= | inurl:goto= | inurl:file= | inurl:host= | inurl:redirect_to= | inurl:url= | inurl:redirect | inurl:src=http | inurl:r=http | inurl:return= | inurl:next= | inurl:redir= | inurl:http site:{cli}',
+    #SQLi Prone Parameters
     f'inurl:id= | inurl:pid= | inurl:category= | inurl:cat= | inurl:action= | inurl:sid= | inurl:dir= inurl:& site:*.*.{cli}',
     f'inurl:id= | inurl:pid= | inurl:category= | inurl:cat= | inurl:action= | inurl:sid= | inurl:dir= inurl:& site:{cli}',
+    #SSRF Prone Parameters
     f'inurl:http | inurl:resource | inurl:resources | inurl:url= | inurl:path= | inurl:dest= | inurl:proxy= | inurl:html= | inurl:data= | inurl:domain= | inurl:page= inurl:& site:{cli}',
+    #LFI Prone Parameters
     f'inurl:include | inurl:dir | inurl:detail= | inurl:file= | inurl:folder= | inurl:inc= | inurl:locate= | inurl:doc= | inurl:conf= inurl:& site:*.*.{cli}',
     f'inurl:include | inurl:dir | inurl:detail= | inurl:file= | inurl:folder= | inurl:inc= | inurl:locate= | inurl:doc= | inurl:conf= inurl:& site:{cli}',
+    #RCE Prone Parameters
     f'inurl:cmd | inurl:exec= | inurl:query= | inurl:code= | inurl:do= | inurl:run= | inurl:read= | inurl:ping= inurl:& site:*.*.{cli}',
     f'inurl:cmd | inurl:exec= | inurl:query= | inurl:code= | inurl:do= | inurl:run= | inurl:read= | inurl:ping= inurl:& site:{cli}',
+    #High % inurl keywords
     f'inurl:config | inurl:env | inurl:setting | inurl:backup | inurl:admin | inurl:php site:*.*.{cli}',
     f'inurl:config | inurl:env | inurl:setting | inurl:backup | inurl:admin | inurl:php site:{cli}',
+    #Sensitive Parameters
     f'inurl:email= | inurl:phone= | inurl:password= | inurl:secret= inurl:& site:{cli}',
     f'site:codepad.co "{cli}"',
     f'site:scribd.com "{cli}"',
@@ -248,5 +258,15 @@ urls = [
     f'inurl:apidocs | inurl:api-docs | inurl:swagger | inurl:api-explorer site:"{cli}"',
     f'intext:"error" | intext:"exception" | intext:"not found" | intext:"failed" site:"{cli}"',
     f'site:"{cli}" inurl:login | inurl:logon | inurl:sign-in | inurl:signin | inurl:portal',
-    f'site:"{cli}" "choose file"'
+    f'site:"{cli}" "choose file"',
+    #Bug Bounty programs and Vulnerability Disclosure Programs
+    f'site:{cli}/security.txt "bounty"',
+    #Apache Server Status Exposed
+    f'site:{cli}/server-status apache',
+    #WordPress
+    f'inurl:{cli}/wp-admin/admin-ajax.php',
+    #Drupal
+    f'intext:"Powered by" & intext:Drupal & inurl:user & inurl:{cli}',
+    #Joomla
+    f'site:{cli}/joomla/login'
     ]

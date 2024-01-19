@@ -27,6 +27,7 @@ import url_list
 import time
 import random
 import os
+import urllib.parse
 
 def main():
 
@@ -51,7 +52,7 @@ def main():
         
         #check if the -t flag is specified before sending requests and analyzing them
         if url_list.cli:
-            r = requests.get(url, headers=headers, timeout=70)
+            r = requests.get('https://www.google.com/search?q='+urllib.parse.quote(url), headers=headers, timeout=70)
             if r.status_code == 200:
                 html = r.text
                 soup = BeautifulSoup(html, 'html.parser')
@@ -74,7 +75,7 @@ def main():
             else:
                 print(f'{url}   {CYAN}======>{END}  {RED}Not found{END}')
 
-            time.sleep(random.randint(58,66))
+            time.sleep(random.randint(0,1))
 
 try:
     main()

@@ -11,10 +11,10 @@ PURPLE = '\033[0;35m'
 CYAN = "\033[36m"
 END = "\033[0m"
 
-banner = f"""{CYAN}
+banner = f"""{PURPLE}
 ██████╗  ██████╗ ██████╗ ██╗  ██╗███████╗██╗███╗   ██╗██████╗ ███████╗██████╗ 
 ██╔══██╗██╔═══██╗██╔══██╗██║ ██╔╝██╔════╝██║████╗  ██║██╔══██╗██╔════╝██╔══██╗
-██║  ██║██║   ██║██████╔╝█████╔╝ █████╗  ██║██╔██╗ ██║██║  ██║█████╗  ██████╔╝{PURPLE}
+██║  ██║██║   ██║██████╔╝█████╔╝ █████╗  ██║██╔██╗ ██║██║  ██║█████╗  ██████╔╝
 ██║  ██║██║   ██║██╔══██╗██╔═██╗ ██╔══╝  ██║██║╚██╗██║██║  ██║██╔══╝  ██╔══██╗
 ██████╔╝╚██████╔╝██║  ██║██║  ██╗██║     ██║██║ ╚████║██████╔╝███████╗██║  ██║
 ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝{END}"""
@@ -31,6 +31,10 @@ import urllib.parse
 
 def main():
 
+    url_count = 0
+    requests_before_delay = 10
+    sent_requests_count = 0
+    
     #clean output file
     file_path = 'output.txt'
     if os.path.exists(file_path):
@@ -52,7 +56,7 @@ def main():
         
         #check if the -t flag is specified before sending requests and analyzing them
         if url_list.cli:
-            r = requests.get('https://www.google.com/search?q='+urllib.parse.quote(url), headers=headers, timeout=70)
+            r = requests.get('https://www.google.com/search?q='+urllib.parse.quote(url), headers=headers, timeout=90)
             if r.status_code == 200:
                 html = r.text
                 soup = BeautifulSoup(html, 'html.parser')
@@ -64,10 +68,12 @@ def main():
                 print(f'{RED}Unknown error{END}')
                 break
 
+            if url_count == 0:
+                print(f'{CYAN}Broad domain search with negative search{END}')
+
             if len(links) >= 1:
                 url_found = url
-                print(f'{BLUE}[!]{END} {url_found}   {CYAN}======>{END}  {GREEN}Found{END}')
-
+                print(f'{BLUE}[+]{END} {url_found}   {CYAN}======>{END}  {GREEN}Found{END}')
                 #print all dorks to output.txt file
                 if url_list.args.output:
                     with open('output.txt', 'a', encoding='utf-8') as output_file:
@@ -75,7 +81,59 @@ def main():
             else:
                 print(f'{BLUE}[!]{END} {url}   {CYAN}======>{END}  {RED}Not found{END}')
 
-            time.sleep(random.randint(58,66))
+            time.sleep(random.randint(0,1))
+            
+            sent_requests_count += 1
+            if sent_requests_count % requests_before_delay == 0:
+                print(f'{BLUE}[INFO]{END} {CYAN}{sent_requests_count}/{len(url_list.urls)} requests have been completed. Сausing a delay of 90 seconds...{END}')
+                time.sleep(90)
+
+            url_count += 1
+            if url_count == 1:
+                print(f'{CYAN}SQL Injection Errors{END}')
+            elif url_count == 2:
+                print(f'{CYAN}PHP extension with parameters{END}')
+            elif url_count == 3:
+                print(f'{CYAN}Java extension with parameters{END}')
+            elif url_count == 4:
+                print(f'{CYAN}NET extension with parameters{END}')
+            elif url_count == 5:
+                print(f'{CYAN}Disclosed XSS and Open Redirects{END}')
+            elif url_count == 6:
+                print(f'{CYAN}Juicy Extensions{END}')
+            elif url_count == 140:
+                print(f'{CYAN}App frameworks and their exposures{END}')
+            elif url_count == 146:
+                print(f'{CYAN}Code Leaks{END}')
+            elif url_count == 175:
+                print(f'{CYAN}Cloud Storage{END}')
+            elif url_count == 189:
+                print(f'{CYAN}XSS prone parameters{END}')
+            elif url_count == 190:
+                print(f'{CYAN}Open Redirect prone parameters{END}')
+            elif url_count == 192:
+                print(f'{CYAN}SQLi Prone Parameters{END}')
+            elif url_count == 194:
+                print(f'{CYAN}SSRF Prone Parameters{END}')
+            elif url_count == 195:
+                print(f'{CYAN}LFI Prone Parameters{END}')
+            elif url_count == 197:
+                print(f'{CYAN}RCE Prone Parameters{END}')
+            elif url_count == 199:
+                print(f'{CYAN}High % inurl keywords{END}')
+            elif url_count == 201:
+                print(f'{CYAN}Sensitive Parameters{END}')
+            elif url_count == 232:
+                print(f'{CYAN}Bug Bounty programs and Vulnerability Disclosure Programs{END}')
+            elif url_count == 233:
+                print(f'{CYAN}Apache Server Status Exposed{END}')
+            elif url_count == 234:
+                print(f'{CYAN}WordPress{END}')
+            elif url_count == 235:
+                print(f'{CYAN}Drupal{END}')
+            elif url_count == 236:
+                print(f'{CYAN}Joomla{END}')
+            
 
 try:
     main()

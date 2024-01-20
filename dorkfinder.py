@@ -11,13 +11,13 @@ PURPLE = '\033[0;35m'
 CYAN = "\033[36m"
 END = "\033[0m"
 
-banner = f"""{PURPLE}
+banner = f"""
 ██████╗  ██████╗ ██████╗ ██╗  ██╗███████╗██╗███╗   ██╗██████╗ ███████╗██████╗ 
 ██╔══██╗██╔═══██╗██╔══██╗██║ ██╔╝██╔════╝██║████╗  ██║██╔══██╗██╔════╝██╔══██╗
 ██║  ██║██║   ██║██████╔╝█████╔╝ █████╗  ██║██╔██╗ ██║██║  ██║█████╗  ██████╔╝
 ██║  ██║██║   ██║██╔══██╗██╔═██╗ ██╔══╝  ██║██║╚██╗██║██║  ██║██╔══╝  ██╔══██╗
 ██████╔╝╚██████╔╝██║  ██║██║  ██╗██║     ██║██║ ╚████║██████╔╝███████╗██║  ██║
-╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝{END}"""
+╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝"""
 print(banner)
 print(f'\n')
 
@@ -30,9 +30,9 @@ import os
 import urllib.parse
 
 def main():
-
+    print(f"\033[1m{YELLOW}[WARNING]{END}\033[0m \033[1mIt's very important not to stress the Google during usage of dork payloads. \nThat's why I cause about 60 seconds delay between requests. Just be patient...\033[0m")
     url_count = 0
-    requests_before_delay = 10
+    requests_before_delay = 25
     sent_requests_count = 0
     
     #clean output file
@@ -56,7 +56,7 @@ def main():
         
         #check if the -t flag is specified before sending requests and analyzing them
         if url_list.cli:
-            r = requests.get('https://www.google.com/search?q='+urllib.parse.quote(url), headers=headers, timeout=90)
+            r = requests.get('https://www.google.com/search?q='+urllib.parse.quote(url), headers=headers, timeout=95)
             if r.status_code == 200:
                 html = r.text
                 soup = BeautifulSoup(html, 'html.parser')
@@ -81,12 +81,11 @@ def main():
             else:
                 print(f'{BLUE}[!]{END} {url}   {CYAN}======>{END}  {RED}Not found{END}')
 
-            time.sleep(random.randint(0,1))
+            time.sleep(random.randint(58,66))
             
             sent_requests_count += 1
             if sent_requests_count % requests_before_delay == 0:
-                print(f'{BLUE}[INFO]{END} {CYAN}{sent_requests_count}/{len(url_list.urls)} requests have been completed. Сausing a delay of 90 seconds...{END}')
-                time.sleep(90)
+                print(f'{BLUE}[INFO]{END} {CYAN}{sent_requests_count}/{len(url_list.urls)} requests have been completed...{END}')
 
             url_count += 1
             if url_count == 1:

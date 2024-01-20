@@ -17,6 +17,8 @@ pip install -r requirements
 python3 dorkfinder.py -t example.com -o
 ```
 
+![Usage](https://github.com/glavstroy/DorkFinder/blob/main/img/usage.png)
+
 ## Flags
 
 ```bash

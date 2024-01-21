@@ -5,10 +5,21 @@ Automatic tool to find Google Dorks using useful payloads with minimum false-pos
 
 ## Install
 
+### Linux
+
 ```bash
 git clone https://github.com/glavstroy/DorkFinder
 cd DorkFinder
 pip install -r requirements
+```
+
+### Docker
+
+```bash
+git clone https://github.com/glavstroy/DorkFinder
+cd DorkFinder
+sudo docker build . -t dorkfinder
+sudo docker run -it --rm dorkfinder
 ```
 
 ## Usage

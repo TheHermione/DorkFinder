@@ -44,5 +44,5 @@ This will display help for the tool. Here are all the switches it supports.
 | -t             | enter the target domain                              |
 | -o             | print to output.txt                                  |
 
-### Warning
+## Disclaimer
 Use it only for educational purposes! I assume no responsibility :)

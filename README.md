@@ -1,7 +1,7 @@
 # DorkFinder
 Automatic tool to find Google Dorks using useful payloads with minimum false-positive checks. 
 
-![Logo](https://github.com/glavstroy/DorkFinder/blob/main/img/logo.png)
+![Logo](https://github.com/glavstroy/DorkFinder/blob/main/img/main.png)
 
 ## Install
 

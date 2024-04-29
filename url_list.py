@@ -26,29 +26,9 @@ urls = [
     f'site:docs.google.com inurl:"/d/" "{cli}"',
     #Sensitive Parameters
     f'inurl:email= | inurl:phone= | inurl:password= | inurl:secret= inurl:& site:{cli}',
-    f'site:codepad.co "{cli}"',
-    f'site:scribd.com "{cli}"',
-    f'site:npmjs.com "{cli}"',
-    f'site:npm.runkit.com "{cli}"',
-    f'site:libraries.io "{cli}"',
-    f'site:ycombinator.com "{cli}"',
-    f'site:coggle.it "{cli}"',
-    f'site:papaly.com "{cli}"',
-    f'site:google.com "{cli}"',
-    f'site:trello.com "{cli}"',
     f'site:prezi.com "{cli}"',
-    f'site:jsdelivr.net "{cli}"',
-    f'site:codepen.io "{cli}"',
-    f'site:codeshare.io "{cli}"',
-    f'site:sharecode.io "{cli}"',
-    f'site:pastebin.com "{cli}"',
-    f'site:repl.it "{cli}"',
-    f'site:productforums.google.com "{cli}"',
-    f'site:gitter.im "{cli}"',
-    f'site:bitbucket.org "{cli}"',
     f'site:bitbucket.org inurl:{cli}',
     f'site:zoom.us inurl:"{cli}"',
-    f'site:atlassian.net "{cli}"',
     f'site:s3.amazonaws.com intext:{cli}',
     f'site:jfrog.io "{cli}"',
     f'site:firebaseio.com "{cli}"',
@@ -77,27 +57,13 @@ urls = [
     f'site:npmjs.com "{cli}"',
     f'site:papaly.com "{cli}"',
     f'site:pastebin.com "{cli}"',
-    f'site:prezi.com "{cli}"',
     f'site:productforums.google.com "{cli}"',
     f'site:repl.it "{cli}"',
     f'site:scribd.com "{cli}"',
     f'site:sharecode.io "{cli}"',
     f'site:trello.com "{cli}"',
     f'site:ycombinator.com "{cli}"',
-    f'site:zoom.us inurl:"{cli}"',
     f'inurl:https://trello.com AND intext:{cli}',
-    #Broad domain search with negative search
-    f'site:{cli} -www -shop -share -ir -mfa',
-    #SQL Injection Errors
-    f'site:{cli} intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"',
-    #PHP extension with parameters
-    f'site:{cli} ext:php inurl:?',
-    #Java extension with parameters
-    f'site:{cli} ext:jsp OR ext:do OR ext:action inurl:?',
-    #NET extension with parameters
-    f'site:{cli} ext:aspx OR ext:asa OR ext:asp OR ext:asax inurl:?',
-    #Disclosed XSS and Open Redirects
-    f'site:openbugbounty.org inurl:reports intext:"{cli}"',
     #Juicy Extensions
     f'site:"{cli}" ext:log | ext:txt | ext:conf | ext:cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git | ext:svn | ext:htpasswd | ext:htaccess | ext:sql | ext:csv | ext:.git-credentials | ext:yaml | ext:yml | ext:ppk | ext:pem | ext:json | ext:cfg | ext:xml | ext:ps1',
     f'site:"{cli}" filename:connections.xml | filename:config.php | filename:config.json',
@@ -233,6 +199,18 @@ urls = [
     f'allintitle:restricted filetype:doc site:{cli}',
     f'inurl:Dashboard.jspa intext:"Atlassian Jira Project Management Software" site:{cli}',
     f'filetype:txt site:{cli}',
+    #Broad domain search with negative search
+    f'site:{cli} -www -shop -share -ir -mfa',
+    #SQL Injection Errors
+    f'site:{cli} intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"',
+    #PHP extension with parameters
+    f'site:{cli} ext:php inurl:?',
+    #Java extension with parameters
+    f'site:{cli} ext:jsp OR ext:do OR ext:action inurl:?',
+    #NET extension with parameters
+    f'site:{cli} ext:aspx OR ext:asa OR ext:asp OR ext:asax inurl:?',
+    #Disclosed XSS and Open Redirects
+    f'site:openbugbounty.org inurl:reports intext:"{cli}"',
     #App frameworks and their exposures
     f'site:{cli} "Whoops! There was an error."',
     f'site:{cli} inurl:/frontend_dev.php/$',

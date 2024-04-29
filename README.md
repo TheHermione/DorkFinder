@@ -28,6 +28,12 @@ sudo docker run -it --rm dorkfinder
 python3 dorkfinder.py -t example.com -o
 ```
 
+Another way to continue a Linux script even after closing the SSH session, you can use the `nohup` command (short for "no hang up"). Here's how to do it:
+
+```bash
+nohup python3 dorkfinder.py -t example.com -o &
+```
+
 ![Usage](https://github.com/glavstroy/DorkFinder/blob/main/img/usage.png)
 
 ## Flags

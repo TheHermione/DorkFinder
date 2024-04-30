@@ -76,7 +76,7 @@ def perform_google_search(url):
 def write_to_output(url):
     file_path = 'output.txt'
     with open(file_path, 'a', encoding='utf-8') as output_file:
-        output_file.write(f'{url}\n')
+        output_file.write(f'[+] {url}\n')
 
 # main
 def main():

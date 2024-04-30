@@ -22,7 +22,7 @@ CYAN = "\033[36m"
 END = "\033[0m"
 
 # function printing banner
-def print_banner():
+def printBanner():
     banner = f"""
     ██████╗  ██████╗ ██████╗ ██╗  ██╗███████╗██╗███╗   ██╗██████╗ ███████╗██████╗ 
     ██╔══██╗██╔═══██╗██╔══██╗██║ ██╔╝██╔════╝██║████╗  ██║██╔══██╗██╔════╝██╔══██╗
@@ -86,7 +86,7 @@ def writeOutput(url):
 
 # main
 def main():
-    print_banner()
+    printBanner()
     print(f"\033[1m{YELLOW}[WARNING]{END}\033[0m \033[1mIt's very important not to stress the Google during usage of dork payloads. \nThat's why I cause about 60 seconds delay between requests. Just be patient...\033[0m")
 
     cleanOutput()

@@ -21,7 +21,7 @@ PURPLE = '\033[0;35m'
 CYAN = "\033[36m"
 END = "\033[0m"
 
-# function to print banner
+# function printing banner
 def print_banner():
     banner = f"""
     ██████╗  ██████╗ ██████╗ ██╗  ██╗███████╗██╗███╗   ██╗██████╗ ███████╗██████╗ 
@@ -34,8 +34,8 @@ def print_banner():
     print(banner)
     print('\n')
 
-# function to perform Google search and analyze results
-def perform_google_search(url):
+# function performing Google search and analyze results
+def performGoogleSearch(url):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
@@ -72,8 +72,14 @@ def perform_google_search(url):
         print(f"{RED}An error occurred while performing Google search: {str(e)}{END}")
         sys.exit()
 
-# function to write URLs to output file
-def write_to_output(url):
+# function cleaning output file
+def cleanOutput():
+    file_path = 'output.txt'
+    if os.path.exists(file_path):
+        os.remove(file_path)
+
+# function writing URLs to output file
+def writeOutput(url):
     file_path = 'output.txt'
     with open(file_path, 'a', encoding='utf-8') as output_file:
         output_file.write(f'[+] {url}\n')
@@ -83,20 +89,15 @@ def main():
     print_banner()
     print(f"\033[1m{YELLOW}[WARNING]{END}\033[0m \033[1mIt's very important not to stress the Google during usage of dork payloads. \nThat's why I cause about 60 seconds delay between requests. Just be patient...\033[0m")
 
-    # clean output file
-    file_path = 'output.txt'
-    if os.path.exists(file_path):
-        os.remove(file_path)
+    cleanOutput()
 
     for url in url_list.urls:
         if url_list.cli:
-            if perform_google_search(url):
+            if performGoogleSearch(url):
                 if url_list.args.output:
-                    write_to_output(url)
-
+                    writeOutput(url)
         # delay between requests
         time.sleep(random.randint(58,66))
-        
 
 # exception handling
 try:

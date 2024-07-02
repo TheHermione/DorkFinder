@@ -39,7 +39,6 @@ urls = [
     #Code Leaks
     f'inurl:gitlab "{cli}"',
     f'site:http://box.com "{cli}"',
-    f'inurl:gitlab "{cli}"',
     f'site:atlassian.net "{cli}"',
     f'site:atlassian.net inurl:/servicedesk/customer/user/login "{cli}"',
     f'site:bitbucket.org "{cli}"',

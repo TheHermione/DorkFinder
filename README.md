@@ -1,4 +1,6 @@
 # DorkFinder
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/TheHermione/DorkFinder/issues)
+
 Automatic tool to find Google Dorks using useful payloads with minimum false-positive checks. 
 
 ![Logo](https://github.com/TheHermione/DorkFinder/blob/main/img/main.png)

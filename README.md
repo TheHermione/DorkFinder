@@ -1,14 +1,14 @@
 # DorkFinder
 Automatic tool to find Google Dorks using useful payloads with minimum false-positive checks. 
 
-![Logo](https://github.com/glavstroy/DorkFinder/blob/main/img/main.png)
+![Logo](https://github.com/TheHermione/DorkFinder/blob/main/img/main.png)
 
 ## Install
 
 ### Linux
 
 ```bash
-git clone https://github.com/glavstroy/DorkFinder
+git clone https://github.com/TheHermione/DorkFinder
 cd DorkFinder
 pip install -r requirements
 ```
@@ -16,7 +16,7 @@ pip install -r requirements
 ### Docker
 
 ```bash
-git clone https://github.com/glavstroy/DorkFinder
+git clone https://github.com/TheHermione/DorkFinder
 cd DorkFinder
 sudo docker build . -t dorkfinder
 sudo docker run -it --rm dorkfinder
@@ -34,7 +34,7 @@ Another way to continue a Linux script even after closing the SSH session, you c
 nohup python3 dorkfinder.py -t example.com -o &
 ```
 
-![Usage](https://github.com/glavstroy/DorkFinder/blob/main/img/usage.png)
+![Usage](https://github.com/TheHermione/DorkFinder/blob/main/img/usage.png)
 
 ## Flags
 
@@ -42,7 +42,7 @@ nohup python3 dorkfinder.py -t example.com -o &
 python3 dorkfinder.py -h
 ```
 
-This will display help for the tool. Here are all the switches it supports.
+It will display help for the tool. Here are all the switches it supports.
 
 | Flag           | Description                                          |
 |----------------|------------------------------------------------------|

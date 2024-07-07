@@ -2,7 +2,7 @@
 
 import argparse
 
-parser = argparse.ArgumentParser(description='Google DorkFinder by glavstroy')
+parser = argparse.ArgumentParser(description='Google DorkFinder by hermione')
 parser.add_argument('-t', metavar='example.com', help='enter the target domain', dest='target', type=str, required=True)
 parser.add_argument('-o', action='store_true',  help='print to output.txt', dest='output')
 #parser.add_argument('-p', help='use proxy', dest='proxy')

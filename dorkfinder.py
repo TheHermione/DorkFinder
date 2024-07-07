@@ -4,7 +4,7 @@
 # Thanks to @reewardius
 
 # TODO
-# Create proxy
+# Create proxy & update func
 
 import requests
 from bs4 import BeautifulSoup

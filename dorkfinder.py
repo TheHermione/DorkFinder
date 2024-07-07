@@ -3,6 +3,9 @@
 # Script created by hermione
 # Thanks to @reewardius
 
+# TODO
+# Create proxy
+
 import requests
 from bs4 import BeautifulSoup
 import url_list

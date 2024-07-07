@@ -3,7 +3,7 @@
 
 Automatic tool to find Google Dorks using useful payloads with minimum false-positive checks. 
 
-![Logo](https://github.com/TheHermione/DorkFinder/blob/main/img/main.png)
+![Logo](https://github.com/TheHermione/DorkFinder/blob/main/img/df.png)
 
 ## Install
 

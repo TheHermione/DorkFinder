@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Script created by glavstroy (hermione)
+# Script created by hermione
 # Thanks to @reewardius
 
 import requests
